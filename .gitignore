@@ -1,0 +1,22 @@
+# .gitignore
+
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Archivos de entorno
+.env
+*.env
+
+# Bases de datos
+*.db
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

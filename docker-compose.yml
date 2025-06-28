@@ -1,0 +1,27 @@
+
+services:
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "${USER_SERVICE_PORT}:8000"
+    env_file:
+      - ./user-service/.env
+    networks:
+      - micro_net
+
+  task-service:
+    build: ./task-service
+    container_name: task-service
+    ports:
+      - "${TASK_SERVICE_PORT}:8001"
+    env_file:
+      - ./task-service/.env
+    networks:
+      - micro_net
+    depends_on:
+      - user-service
+
+networks:
+  micro_net:
+    driver: bridge
