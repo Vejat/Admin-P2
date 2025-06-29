@@ -1,4 +1,5 @@
 
+
 services:
   user-service:
     build: ./user-service
@@ -7,8 +8,16 @@ services:
       - "${USER_SERVICE_PORT}:8000"
     env_file:
       - ./user-service/.env
+    volumes:
+      - ./user-service/app/data:/app/data 
     networks:
       - micro_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    
 
   task-service:
     build: ./task-service
@@ -17,10 +26,34 @@ services:
       - "${TASK_SERVICE_PORT}:8001"
     env_file:
       - ./task-service/.env
+    volumes:
+      - ./task-service/app/data:/app/data
     networks:
       - micro_net
     depends_on:
       - user-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"     # Entrada pública HTTP
+      - "81:81"     # Interfaz de administración web
+      - "443:443"   # HTTPS
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
+    networks:
+      - micro_net
+    depends_on:
+      - user-service
+      - task-service
 
 networks:
   micro_net:
