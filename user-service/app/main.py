@@ -6,7 +6,8 @@ from .database import SessionLocal, engine, Base
 # Crear las tablas
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+# Aquí se define el prefijo que Nginx agregará (desde NPM)
+app = FastAPI(root_path="/api/users")
 
 # Dependency para la DB
 def get_db():
@@ -19,6 +20,12 @@ def get_db():
 @app.get("/health")
 def health_check():
     return {"status": "user-service running"}
+
+# IMPORTANTE:
+# Estas rutas ahora estarán disponibles como:
+# POST    /api/users/users
+# GET     /api/users/users
+# GET     /api/users/users/{id}
 
 @app.post("/users", response_model=schemas.UserRead)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):

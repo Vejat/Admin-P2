@@ -12,7 +12,7 @@ USER_SERVICE_URL = os.getenv("USER_SERVICE_URL", "http://user-service:8000/users
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(root_path="/api/tasks")
 
 
 

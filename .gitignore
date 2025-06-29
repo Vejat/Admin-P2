@@ -1,21 +1,27 @@
-# .gitignore
-
-# Entornos virtuales
-env/
-venv/
-.venv/
-
-# Archivos de entorno
-.env
-*.env
-
-# Bases de datos
-*.db
-
-# Archivos de Python compilados
+# Python
 __pycache__/
 *.pyc
 *.pyo
+*.log
+
+# Entornos virtuales
+venv/
+.env
+*.env
+
+# Bases de datos SQLite
+*.db
+**/data/
+
+# Docker
+*.pid
+*.tar
+docker-compose.override.yml
+
+# Nginx Proxy Manager
+nginx/data/**
+nginx/letsencrypt/**
+ 
 
 # Archivos del sistema
 .DS_Store
