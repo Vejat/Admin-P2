@@ -172,4 +172,3 @@ volumes:
 
 ---
 
-*Última actualización: 29 de junio de 2025, 10:10 PM -04*
