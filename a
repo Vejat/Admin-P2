@@ -1,0 +1,8 @@
+4. Integración con el Servidor
+Inicio del Servidor: Cuando ejecutas docker-compose up, Docker crea contenedores para cada servicio. Nginx actúa como el punto de entrada en el puerto 80/443 del host, recibiendo todas las solicitudes.
+Flujo Completo:
+Cliente envía solicitud a http://localhost/api/tasks.
+Nginx redirige a task-service:8001 usando proxy_pass.
+task-service procesa la solicitud con FastAPI, consulta user-service si necesario, y accede a tasks.db via SQLAlchemy.
+Respuesta vuelve por el mismo camino (servicio → Nginx → cliente).
+Persistencia: Los volúmenes aseguran que tasks.db persista entre reinicios.

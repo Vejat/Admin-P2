@@ -1,0 +1,71 @@
+===========================
+✅ API DE USUARIOS (https://users.localhost/api/users)
+===========================
+
+1. POST /api/users/users → Crear usuario
+URL: https://users.localhost/api/users/users
+Body JSON:
+{
+  "email": "maria@correo.com",
+  "full_name": "María López",
+  "password": "contrasena123"
+}
+
+2. GET /api/users/users → Obtener todos los usuarios
+URL: https://users.localhost/api/users/users
+
+3. GET /api/users/users/1 → Obtener un usuario por ID
+URL: https://users.localhost/api/users/users/1
+
+4. GET /api/users/health → Healthcheck
+URL: https://users.localhost/api/users/health
+Respuesta esperada:
+{
+  "status": "user-service running"
+}
+
+
+===========================
+✅ API DE TAREAS (https://tasks.localhost/api/tasks)
+===========================
+
+1. POST /api/tasks/tasks → Crear tarea
+URL: https://tasks.localhost/api/tasks/tasks
+Body JSON:
+{
+  "title": "Estudiar FastAPI",
+  "description": "Practicar ejemplos de rutas y validaciones",
+  "status": "pendiente",
+  "user_id": 1
+}
+
+2. GET /api/tasks/tasks → Listar todas las tareas
+URL: https://tasks.localhost/api/tasks/tasks
+
+3. GET /api/tasks/tasks/1 → Obtener tarea por ID
+URL: https://tasks.localhost/api/tasks/tasks/1
+
+4. PUT /api/tasks/tasks/1 → Actualizar estado de una tarea
+URL: https://tasks.localhost/api/tasks/tasks/1
+Body JSON:
+{
+  "status": "completada"
+}
+
+5. GET /api/tasks/tasks/?user_id=1 → Listar tareas por usuario
+URL: https://tasks.localhost/api/tasks/tasks/?user_id=1
+
+6. GET /api/tasks/health → Healthcheck
+URL: https://tasks.localhost/api/tasks/health
+Respuesta esperada:
+{
+  "status": "task-service running"
+}
+
+7. GET /api/tasks/env → Mostrar variables de entorno
+URL: https://tasks.localhost/api/tasks/env
+Respuesta de ejemplo:
+{
+  "DB_NAME": "tasks_db",
+  "USER_SERVICE_URL": "https://users.localhost/api/users/"
+}
