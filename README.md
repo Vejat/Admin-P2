@@ -3,7 +3,7 @@
 ---
 
 ## Resumen
-Este proyecto implementa una arquitectura de microservicios basada en Docker para gestionar tareas y usuarios, conforme a las Unidades 2 y 3 del curso SysAdmin 2025. Los servicios `user-service` y `task-service` están orquestados con Docker Compose, con Nginx Proxy Manager como API Gateway para enrutamiento y seguridad. A continuación, se detalla el despliegue con un enfoque profundo en los componentes subyacentes.
+Este proyecto implementa una arquitectura de microservicios basada en Docker para gestionar tareas y usuarios, conforme a la unidad 2. Los servicios `user-service` y `task-service` están orquestados con Docker Compose, con Nginx Proxy Manager como API Gateway para enrutamiento y seguridad. A continuación, se detalla el despliegue con un enfoque profundo en los componentes subyacentes.
 
 ---
 
